@@ -7,15 +7,15 @@ const render = employees => {
   const html = [];
 
   html.push(...employees
-    .filter(employee => employee.getRole() === "Manager")
+    .filter(employee => employee.newPosition() === "Manager")
     .map(manager => renderManager(manager))
   );
   html.push(...employees
-    .filter(employee => employee.getRole() === "Engineer")
+    .filter(employee => employee.newPosition() === "Engineer")
     .map(engineer => renderEngineer(engineer))
   );
   html.push(...employees
-    .filter(employee => employee.getRole() === "Intern")
+    .filter(employee => employee.newPosition() === "Intern")
     .map(intern => renderIntern(intern))
   );
 
@@ -25,31 +25,31 @@ const render = employees => {
 
 const renderManager = manager => {
   let template = fs.readFileSync(path.resolve(templatesDir, "manager.html"), "utf8");
-  template = replacePlaceholders(template, "name", manager.getName());
-  template = replacePlaceholders(template, "role", manager.getRole());
-  template = replacePlaceholders(template, "email", manager.getEmail());
-  template = replacePlaceholders(template, "id", manager.getId());
-  template = replacePlaceholders(template, "officeNumber", manager.getOfficeNumber());
+  template = replacePlaceholders(template, "name", manager.newName());
+  template = replacePlaceholders(template, "role", manager.newPosition());
+  template = replacePlaceholders(template, "email", manager.newEmail());
+  template = replacePlaceholders(template, "id", manager.newID());
+  template = replacePlaceholders(template, "officeNumber", manager.newOfficeNumber());
   return template;
 };
 
 const renderEngineer = engineer => {
   let template = fs.readFileSync(path.resolve(templatesDir, "engineer.html"), "utf8");
-  template = replacePlaceholders(template, "name", engineer.getName());
-  template = replacePlaceholders(template, "role", engineer.getRole());
-  template = replacePlaceholders(template, "email", engineer.getEmail());
-  template = replacePlaceholders(template, "id", engineer.getId());
-  template = replacePlaceholders(template, "github", engineer.getGithub());
+  template = replacePlaceholders(template, "name", engineer.newName());
+  template = replacePlaceholders(template, "role", engineer.newPosition());
+  template = replacePlaceholders(template, "email", engineer.newEmail());
+  template = replacePlaceholders(template, "id", engineer.newID());
+  template = replacePlaceholders(template, "github", engineer.newGithub());
   return template;
 };
 
 const renderIntern = intern => {
   let template = fs.readFileSync(path.resolve(templatesDir, "intern.html"), "utf8");
-  template = replacePlaceholders(template, "name", intern.getName());
-  template = replacePlaceholders(template, "role", intern.getRole());
-  template = replacePlaceholders(template, "email", intern.getEmail());
-  template = replacePlaceholders(template, "id", intern.getId());
-  template = replacePlaceholders(template, "school", intern.getSchool());
+  template = replacePlaceholders(template, "name", intern.newName());
+  template = replacePlaceholders(template, "role", intern.newPosition());
+  template = replacePlaceholders(template, "email", intern.newEmail());
+  template = replacePlaceholders(template, "id", intern.newID());
+  template = replacePlaceholders(template, "school", intern.newSchool());
   return template;
 };
 
