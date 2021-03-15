@@ -9,8 +9,6 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-const { networkInterfaces } = require("os");
-const { createInflate } = require("zlib");
 
 const employeeList = [];
 
@@ -26,7 +24,7 @@ const generalQuestions = [
     },
     {
         type: "input",
-        name: "ID",
+        name: "id",
         message: "What is this employee's ID?"
     },
     {
@@ -73,7 +71,6 @@ function employeePosition() {
         ])
         .then(({name, id, email, github}) => {
             employeeList.push(new Engineer(name, id, email, github));
-            //(response.name, response.id, response.email, response.github)
             newEmployee();
         })
     }
@@ -90,7 +87,6 @@ function employeePosition() {
         ])
         .then(({name, id, email, school}) => {
             employeeList.push(new Intern(name, id, email, school));
-
             newEmployee();
         })
     }
@@ -101,13 +97,12 @@ function employeePosition() {
             ...generalQuestions,
             {
                 type:"input",
-                message: "What is their phone number?",
-                name: "phone"
+                message: "What is their office number?",
+                name: "office"
             }
         ])
-        .then(({name, id, email, phone}) => {
-            employeeList.push(new Manager(name, id, email, phone));
-
+        .then(({name, id, email, office}) => {
+            employeeList.push(new Manager(name, id, email, office));
             newEmployee();
         })
     }
