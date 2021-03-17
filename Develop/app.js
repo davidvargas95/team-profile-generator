@@ -13,8 +13,7 @@ const render = require("./lib/htmlRenderer");
 const employeeList = [];
 
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
+// This variable lays the ground work for questions asked of each new position
 
 const generalQuestions = [
     {
@@ -39,6 +38,8 @@ const generalQuestions = [
     },
 ];
 
+
+//Function to start inquirer to determine which position we are generating
 employeePosition();
 
 function employeePosition() {
@@ -59,6 +60,7 @@ function employeePosition() {
         }
     });
 
+    // Engineer questions
     function engineerPosition() {
 
         inquirer.prompt([
@@ -75,6 +77,7 @@ function employeePosition() {
         })
     }
 
+    // Intern questions
     function internPosition() {
 
         inquirer.prompt([
@@ -91,6 +94,7 @@ function employeePosition() {
         })
     }
 
+    // Manager questions
     function managerPosition() {
 
         inquirer.prompt([
@@ -106,7 +110,8 @@ function employeePosition() {
             newEmployee();
         })
     }
-
+    
+    // Function that asks to add another position
     function newEmployee() {
         inquirer.prompt({
             message: "Will you add another member?",
@@ -129,6 +134,7 @@ function employeePosition() {
         }
     }
 
+    // Runs the file generation process
     function createFile() {
         const html = render(employeeList);
         if (! fs.existsSync(OUTPUT_DIR))
